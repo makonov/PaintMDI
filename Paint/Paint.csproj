@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SignAssembly>False</SignAssembly>
+    <StartupObject></StartupObject>
+    <Version>1.0.0.0</Version>
+    <Authors>Макар Чуприянов</Authors>
+    <Company>РИС-22-1. Чуприянов Макар</Company>
+    <Copyright>Copyright © 2024</Copyright>
+    <Description>MDI Paint - это графическое приложение, разработанное с использованием технологии MDI (Multiple Document Interface), что означает возможность работы с несколькими открытыми документами внутри одного главного окна. Программа предоставляет пользователю удобные инструменты для создания и редактирования изображений в многодокументном режиме.</Description>
+    <Product>MDIPaint</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
