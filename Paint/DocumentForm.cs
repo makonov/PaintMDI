@@ -1,5 +1,4 @@
-﻿using Paint.DrawingModes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -309,10 +308,12 @@ namespace Paint
             {
                 using (Bitmap newBitmap = new Bitmap(imagePath))
                 {
+                    SetCanvasSize(newBitmap.Width, newBitmap.Height);
+                    OriginalWidth = newBitmap.Width;
+                    OriginalHeight = newBitmap.Height;
                     Bitmap = new Bitmap(newBitmap);
                 }
 
-                SetCanvasSize(Bitmap.Width, Bitmap.Height);
                 HasUnsavedChanges = false;
                 Invalidate();
             }

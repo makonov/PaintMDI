@@ -95,7 +95,6 @@
             AcceptButton = OkButton;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            CancelButton = CancelButton;
             ClientSize = new Size(397, 169);
             Controls.Add(CancelButton);
             Controls.Add(radiusTextBox);
@@ -107,6 +106,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "StarSettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Настройка инструмента \"Звезда\"";
             ResumeLayout(false);
             PerformLayout();

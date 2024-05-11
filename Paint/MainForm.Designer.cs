@@ -47,6 +47,8 @@
             arrangeIconsToolStripMenuItem = new ToolStripMenuItem();
             referenceToolStripMenuItem = new ToolStripMenuItem();
             appInfoToolStripMenuItem = new ToolStripMenuItem();
+            filtersToolStripMenuItem = new ToolStripMenuItem();
+            pluginSettingsToolStripMenuItem = new ToolStripMenuItem();
             instrumentToolStrip = new ToolStrip();
             paletteToolStripDropDownButton = new ToolStripDropDownButton();
             selectRedColorToolStripMenuItem = new ToolStripMenuItem();
@@ -75,7 +77,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, drawingToolStripMenuItem, windowToolStripMenuItem, referenceToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, drawingToolStripMenuItem, windowToolStripMenuItem, referenceToolStripMenuItem, filtersToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.MdiWindowListItem = windowToolStripMenuItem;
             menuStrip1.Name = "menuStrip1";
@@ -200,6 +202,21 @@
             appInfoToolStripMenuItem.Text = "О программе";
             appInfoToolStripMenuItem.Click += appInfoToolStripMenuItem_Click;
             // 
+            // filtersToolStripMenuItem
+            // 
+            filtersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pluginSettingsToolStripMenuItem });
+            filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
+            filtersToolStripMenuItem.Size = new Size(85, 24);
+            filtersToolStripMenuItem.Text = "Фильтры";
+            filtersToolStripMenuItem.OwnerChanged += filtersToolStripMenuItem_OwnerChanged;
+            // 
+            // pluginSettingsToolStripMenuItem
+            // 
+            pluginSettingsToolStripMenuItem.Name = "pluginSettingsToolStripMenuItem";
+            pluginSettingsToolStripMenuItem.Size = new Size(224, 26);
+            pluginSettingsToolStripMenuItem.Text = "Настроить";
+            pluginSettingsToolStripMenuItem.Click += pluginSettingsToolStripMenuItem_Click;
+            // 
             // instrumentToolStrip
             // 
             instrumentToolStrip.ImageScalingSize = new Size(20, 20);
@@ -224,28 +241,28 @@
             // selectRedColorToolStripMenuItem
             // 
             selectRedColorToolStripMenuItem.Name = "selectRedColorToolStripMenuItem";
-            selectRedColorToolStripMenuItem.Size = new Size(224, 26);
+            selectRedColorToolStripMenuItem.Size = new Size(154, 26);
             selectRedColorToolStripMenuItem.Text = "Красный";
             selectRedColorToolStripMenuItem.Click += selectRedColorToolStripMenuItem_Click;
             // 
             // selectBlueColorToolStripMenuItem
             // 
             selectBlueColorToolStripMenuItem.Name = "selectBlueColorToolStripMenuItem";
-            selectBlueColorToolStripMenuItem.Size = new Size(224, 26);
+            selectBlueColorToolStripMenuItem.Size = new Size(154, 26);
             selectBlueColorToolStripMenuItem.Text = "Синий";
             selectBlueColorToolStripMenuItem.Click += selectBlueColorToolStripMenuItem_Click;
             // 
             // selectGreenColorToolStripMenuItem
             // 
             selectGreenColorToolStripMenuItem.Name = "selectGreenColorToolStripMenuItem";
-            selectGreenColorToolStripMenuItem.Size = new Size(224, 26);
+            selectGreenColorToolStripMenuItem.Size = new Size(154, 26);
             selectGreenColorToolStripMenuItem.Text = "Зеленый";
             selectGreenColorToolStripMenuItem.Click += selectGreenColorToolStripMenuItem_Click;
             // 
             // selectAnotherColorToolStripMenuItem
             // 
             selectAnotherColorToolStripMenuItem.Name = "selectAnotherColorToolStripMenuItem";
-            selectAnotherColorToolStripMenuItem.Size = new Size(224, 26);
+            selectAnotherColorToolStripMenuItem.Size = new Size(154, 26);
             selectAnotherColorToolStripMenuItem.Text = "Другой";
             selectAnotherColorToolStripMenuItem.Click += selectAnotherColorToolStripMenuItem_Click;
             // 
@@ -384,6 +401,7 @@
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PaintMDI";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -434,5 +452,7 @@
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripSeparator toolStripButton1;
         private ToolStripMenuItem defaultStarToolStripMenuItem;
+        private ToolStripMenuItem pluginSettingsToolStripMenuItem;
+        public ToolStripMenuItem filtersToolStripMenuItem;
     }
 }

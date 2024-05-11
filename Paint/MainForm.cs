@@ -1,8 +1,9 @@
-using Paint.DrawingModes;
 using System.Diagnostics.Contracts;
 using System.Drawing.Imaging;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Windows.Forms;
+using PluginInterface;
 
 namespace Paint
 {
@@ -15,10 +16,13 @@ namespace Paint
         public static int NewDocumentCount { get; set; }
         public static int StarVertices { get; set; }
         public static double StarRadius { get; set; }
+        private Dictionary<string, IPlugin> plugins = new Dictionary<string, IPlugin>();
 
         public MainForm()
         {
             InitializeComponent();
+            PluginManager.LoadPlugins();
+            CreatePluginsMenu();
             Color = Color.Black;
             PenWidth = 3;
             NewDocumentCount = 0;
@@ -28,6 +32,40 @@ namespace Paint
             brushSizeToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
             saveHowToolStripMenuItem.Enabled = false;
+            if (PluginManager.Plugins.Count() != 0) ShowLoadedPlugins();
+        }
+
+        public static void ShowLoadedPlugins()
+        {
+            string message = "Загруженные плагины:\n\n";
+            foreach (var pluginName in PluginManager.Plugins.Keys)
+            {
+                message += $"{pluginName}\n";
+            }
+
+            MessageBox.Show(message, "Загруженные плагины", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CreatePluginsMenu()
+        {
+            foreach (var p in PluginManager.Plugins)
+            {
+                var item = filtersToolStripMenuItem.DropDownItems.Add(p.Value.Name);
+                item.Click += OnPluginClick;
+                item.Visible = PluginManager.Statuses[p.Key] ? true : false;
+            }
+        }
+
+        public void OnPluginClick(object sender, EventArgs e)
+        {
+            IPlugin plugin = PluginManager.Plugins[((ToolStripMenuItem)sender).Text];
+            if (ActiveMdiChild != null)
+            {
+                var activeDocumentForm = (DocumentForm)ActiveMdiChild;
+                plugin.Transform(activeDocumentForm.Bitmap);
+                activeDocumentForm.HasUnsavedChanges = true;
+                activeDocumentForm.Refresh();
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -366,6 +404,17 @@ namespace Paint
         {
             StarVertices = 5;
             StarRadius = 2;
+        }
+
+        private void pluginSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new PluginSettingsForm(this);
+            form.ShowDialog();
+        }
+
+        private void filtersToolStripMenuItem_OwnerChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
